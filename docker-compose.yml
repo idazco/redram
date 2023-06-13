@@ -1,0 +1,47 @@
+version: '3'
+networks:
+  odoodev:
+
+services:
+
+  db:
+    image: postgres:12
+    container_name: pg12
+    environment:
+      - POSTGRES_PASSWORD=odoo
+      - POSTGRES_USER=odoo
+      - POSTGRES_DB=postgres
+    restart: unless-stopped
+    volumes:
+      - ./pg-data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    networks:
+      - odoodev
+
+
+  odoo:
+    image: odoo:14
+    container_name: odoo14
+    depends_on:
+      - db
+    ports:
+      - 8069:8069
+      - 8072:8072
+    tty: true
+    stdin_open: true
+    command: -- --dev=reload
+    volumes:
+      - ./odoo.conf:/etc/odoo/odoo.conf
+      - ../addons:/mnt/extra-addons
+      - ./var-lib-odoo:/var/lib/odoo
+    restart: unless-stopped
+    networks:
+      - odoodev
+
+  spark:
+    image: apache/spark:latest
+    container_name: spark
+    volumes:
+      - ./my_script.py:/app/my_script.py
+    command: spark-shell
