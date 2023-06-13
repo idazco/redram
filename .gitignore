@@ -2,3 +2,4 @@
 redram.iml
 spark/.venv/*
 spark/.ipynb_checkpoints
+spark/scratch*
