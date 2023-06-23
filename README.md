@@ -3,7 +3,8 @@
 Red Ram is an acronym which stands for Real Estate Data, Retrieval; Administration; Management.
 In other words, this is a tool stack for the retrieval, administration and management of real estate data.
 The purpose is to provide a foundation system for building other real estate related solutions.
-For example: appraisal, taxation, property management, sales, analytics, marketing, HOA management and collections.
+For example: appraisal, taxation, property management, sales, mortgage origination/management, analytics, marketing, HOA
+management and collections.
 
 ---
 
